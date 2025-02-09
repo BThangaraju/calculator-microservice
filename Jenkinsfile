@@ -28,5 +28,11 @@ pipeline {
                    sh 'kubectl apply -f kubernetes/service.yml'
                }
            }
+
+           stage('Ansible Post-Configuration') {
+               steps {
+                   sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
+               }
+           }
        }
    }
