@@ -3,7 +3,9 @@ WORKDIR /app
 
 # Copy the application code and requirements.txt into the container
 COPY /app /app/
-COPY ./tests /app/tests  # Include the tests directory in the image
+
+WORKDIR /tests
+COPY /tests /app/tests  # Include the tests directory in the image
 
 # Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
