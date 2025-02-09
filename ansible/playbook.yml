@@ -1,0 +1,10 @@
+ - name: Configure Deployed App
+     hosts: localhost
+     tasks:
+       - name: Verify Kubernetes Deployment
+         shell: kubectl get pods
+         register: pod_status
+
+       - name: Display Pod Status
+         debug:
+           var: pod_status.stdout_lines
