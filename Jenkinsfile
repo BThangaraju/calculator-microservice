@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -f docker/Dockerfile -t calculator-microservice:latest .'
+                sh 'docker build -t calculator-microservice:latest -f docker/Dockerfile .'
             }
         }
 
