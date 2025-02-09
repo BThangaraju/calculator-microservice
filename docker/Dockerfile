@@ -1,5 +1,5 @@
 FROM python:3.9
-WORKDIR /app
+#WORKDIR /app
 
 # Copy the application code and requirements.txt into the container
 COPY /app /app/
