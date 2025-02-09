@@ -1,21 +1,20 @@
 FROM python:3.9
+
+# Set working directory to /app
 WORKDIR /app
 
-# Copy the application code into the container
+# Copy the application code
 COPY ./app /app/
 
-# Copy the tests directory into the container
+# Copy the tests directory
 COPY ./tests /tests/
 
-# Add /app to PYTHONPATH
-ENV PYTHONPATH=/app
+# Install Python dependencies
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Install the required Python packages
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Expose the port that the Flask app runs on
+# Expose the Flask app port
 EXPOSE 5000
 
-# Command to run the application
-CMD ["python", "app.py"]
+# Command to run the Flask application
+CMD ["python", "/app/app.py"]
 
