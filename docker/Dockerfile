@@ -2,7 +2,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copy the application code and requirements.txt into the container
-COPY app.py /app
+COPY /app /app/
 
 # Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
