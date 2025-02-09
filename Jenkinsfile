@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'docker run calculator-microservice pytest tests/'
+                sh 'docker run -e PYTHONPATH=/app calculator-microservice pytest /tests'
             }
         }
 
