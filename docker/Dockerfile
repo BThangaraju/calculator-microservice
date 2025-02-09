@@ -3,8 +3,6 @@ WORKDIR /app
 
 # Copy the application code and requirements.txt into the container
 COPY ./app /app/
-
-WORKDIR /tests
 COPY ./tests /tests/  # Include the tests directory in the image
 
 # Install the required Python packages
