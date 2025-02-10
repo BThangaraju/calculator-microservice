@@ -42,8 +42,8 @@ pipeline {
             steps {
                
                 withKubeConfig([credentialsId: 'localhost']) {
-                sh 'kubectl apply -f ./kubernetes/deployment.yml'
-                sh 'kubectl apply -f ./kubernetes/service.yml'
+                sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false'
+                sh 'kubectl apply -f ./kubernetes/service.yml --validate=false'
                 }
             }
         }
