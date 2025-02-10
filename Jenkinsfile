@@ -41,7 +41,7 @@ pipeline {
     
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'KubernetesCred', serverUrl: 'https://your-kubernetes-api-server']) {
+                withKubeConfig([credentialsId: 'KubernetesCred', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f kubernetes/deployment.yml --validate=false'
                     sh 'kubectl apply -f kubernetes/service.yml --validate=false'
                 }
