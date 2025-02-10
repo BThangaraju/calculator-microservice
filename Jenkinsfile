@@ -41,7 +41,7 @@ pipeline {
     
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'KubernetesCred', contextName: 'minikube', serverUrl: 'https://192.168.49.2:8443']) {
+                withKubeConfig([credentialsId: 'KubernetesCred', variable: 'KUBECONFIG']) {
                     sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false -v=10'
                     sh 'kubectl apply -f ./kubernetes/service.yml --validate=false'
                 }
