@@ -37,17 +37,17 @@ pipeline {
                      )
                 }
             }
-        }
+        }  
+    
         stage('Deploy to Kubernetes') {
             steps {
-               
-                withKubeConfig([credentialsId: 'localhost']) {
-                sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false'
-                sh 'kubectl apply -f ./kubernetes/service.yml --validate=false'
+                withKubeConfig([credentialsId: 'KubernetesCred', serverUrl: 'https://your-kubernetes-api-server']) {
+                    sh 'kubectl apply -f kubernetes/deployment.yml'
+                    sh 'kubectl apply -f kubernetes/service.yml'
                 }
             }
         }
-
+           
         stage('Ansible Post-Configuration') {
             steps {
                 sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
