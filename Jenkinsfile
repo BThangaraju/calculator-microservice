@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     ansiblePlaybook(
-                        playbook: 'playbook_pull.yml',
+                        playbook: './ansible/playbook_pull.yml',
                         inventory: 'inventory'
                      )
                 }
