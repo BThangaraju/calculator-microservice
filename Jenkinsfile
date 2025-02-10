@@ -28,6 +28,16 @@ pipeline {
             }
         }
 
+        stage('Pull from Docker Hub') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'playbook_pull.yml',
+                        inventory: 'inventory'
+                     )
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'kubectl apply -f kubernetes/deployment.yml'
