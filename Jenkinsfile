@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -t calculator-microservice:latest -f docker/Dockerfile .'
+                sh 'docker build -t iiitb/calculator-microservice:latest -f docker/Dockerfile .'
             }
         }
 
@@ -22,8 +22,8 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub-credentials']) {
-                    sh 'docker push calculator-microservice:latest'
+                withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'DockerHubCred']) {
+                    sh 'docker push iiitb/calculator-microservice:latest'
                 }
             }
         }
