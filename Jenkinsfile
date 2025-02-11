@@ -41,10 +41,8 @@ pipeline {
     
         stage('Deploy to Kubernetes') {
             steps {
-                #withKubeConfig([credentialsId: 'KubernetesCred']) {
                     sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false -v=10'
                     sh 'kubectl apply -f ./kubernetes/service.yml --validate=false'
-                # }
             }
         }
            
