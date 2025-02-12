@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/BThangaraju/calculator-microservice.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'docker build -t iiitb/calculator-microservice:latest -f docker/Dockerfile .'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'docker run -e PYTHONPATH=/app iiitb/calculator-microservice pytest /tests'
+            }
+        }
+   }  
+}
