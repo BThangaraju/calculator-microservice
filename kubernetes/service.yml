@@ -7,6 +7,6 @@ spec:
     app: calculator
   ports:
     - protocol: TCP
-      port: 80        # Port exposed to the cluster
-      targetPort: 5000 # Port in the container
-  type: ClusterIP      # Default type. Change to NodePort if needed
+      port: 5000       # Change service port to 5000
+      targetPort: 5000 # The container's port
+  type: ClusterIP
