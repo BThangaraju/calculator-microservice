@@ -7,6 +7,7 @@ spec:
     app: calculator
   ports:
     - protocol: TCP
-      port: 5000       # Change service port to 5000
-      targetPort: 5000 # The container's port
-  type: ClusterIP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30007 # Add this line
+  type: NodePort
