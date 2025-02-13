@@ -34,18 +34,18 @@ pipeline {
                     ansiblePlaybook(
                         playbook: './ansible/playbook_pull.yml',
                         inventory: 'inventory'
-                     )
+                    )
                 }
             }
-        }  
-    
+        }
+
         stage('Deploy to Kubernetes') {
             steps {
-                    sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false' 
-                    sh 'kubectl apply -f ./kubernetes/service.yml --validate=false' 
+                sh 'kubectl apply -f ./kubernetes/deployment.yml --validate=false'
+                sh 'kubectl apply -f ./kubernetes/service.yml --validate=false'
             }
         }
-           
+
         stage('Ansible Post-Configuration') {
             steps {
                 sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
@@ -62,16 +62,18 @@ pipeline {
                     docker image prune -f
                     '''
                 }
+                // Test the deployed application
                 sh 'curl "http://192.168.49.2:30007/add?a=10&b=20"'
             }
         }
+    }
 
-        post {
-                success {
-                    mail to: 'b.thangaraju@iiitb.ac.in',
-                         subject: "Application Deployment SUCCESS: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: "The build was successful!"
-                }
+    post {
+        success {
+            mail to: 'b.thangaraju@iiitb.ac.in',
+                 subject: "Application Deployment SUCCESS: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "The build was successful!"
+        }
         failure {
             mail to: 'b.thangaraju@iiitb.ac.in',
                  subject: "Application Deployment FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -80,6 +82,5 @@ pipeline {
         always {
             cleanWs()
         }
-     }
-  }   
+    }
 }
