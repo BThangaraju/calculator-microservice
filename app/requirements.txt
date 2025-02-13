@@ -1,3 +1,6 @@
 Flask==2.0.3
 Werkzeug==2.0.3
 pytest
+
+# Werkzeug==2.0.3 refers to a specific version (2.0.3) of the Werkzeug library, which is a popular Python library for developing web applications. 
+# It is a foundational library that powers many web frameworks, including Flask.
