@@ -49,6 +49,8 @@ pipeline {
         stage('Ansible Post-Configuration') {
             steps {
                 sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
+                sh 'minikube service calculator-microservice --url'
+                sh 'curl "http://192.168.49.2:30007/add?a=10&b=20"'
             }
         }
     }
