@@ -11,7 +11,7 @@ def client():
         yield client
 
 def test_add(client):
-    response = client.get('/add?a=4&b=2')
+    response = client.get('/add?a=3&b=2')
     assert response.get_json() == {"result": 5}
 
 def test_subtract(client):
